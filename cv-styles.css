@@ -34,10 +34,64 @@
     pointer-events: none;
 }
 
+.cv-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(260px, 340px);
+    gap: var(--spacing-6);
+    align-items: end;
+}
+
+.cv-hero-copy {
+    position: relative;
+    z-index: 1;
+}
+
 .cv-title-block {
     position: relative;
     z-index: 1;
     margin-bottom: var(--spacing-6);
+}
+
+.cv-portrait-card {
+    position: relative;
+    z-index: 1;
+    justify-self: end;
+    max-width: 340px;
+}
+
+.cv-portrait-frame {
+    position: relative;
+    padding: 0.9rem;
+    border-radius: 1.75rem;
+    background: linear-gradient(145deg, rgba(232, 185, 49, 0.95), rgba(199, 91, 42, 0.95));
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+
+.cv-portrait-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0.9rem;
+    border: 1px solid rgba(255, 248, 236, 0.45);
+    border-radius: 1.1rem;
+    pointer-events: none;
+}
+
+.cv-portrait-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 1rem;
+}
+
+.cv-portrait-caption {
+    margin: var(--spacing-3) 0 0;
+    padding-left: var(--spacing-2);
+    border-left: 3px solid rgba(232, 185, 49, 0.75);
+    color: rgba(255, 248, 236, 0.88);
+    font-size: 0.92rem;
+    line-height: 1.7;
 }
 
 .cv-page-title {
@@ -73,6 +127,16 @@
 }
 
 @media (max-width: 768px) {
+    .cv-hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
+    }
+
+    .cv-portrait-card {
+        justify-self: start;
+        max-width: 280px;
+    }
+
     .cv-contact-info {
         grid-template-columns: 1fr;
         gap: var(--spacing-2);
@@ -155,6 +219,10 @@
 }
 
 @media (max-width: 640px) {
+    .cv-portrait-card {
+        max-width: 100%;
+    }
+
     .cv-layout {
         border-radius: 0;
     }
