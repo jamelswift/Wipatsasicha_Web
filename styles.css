@@ -37,6 +37,14 @@ body {
     overflow-x: hidden;
 }
 
+.page-view {
+    display: none;
+}
+
+.page-view.active {
+    display: block;
+}
+
 main {
     min-height: calc(100vh - 60px);
 }

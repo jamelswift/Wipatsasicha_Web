@@ -5,8 +5,63 @@ const mobileMenu = document.getElementById('mobile-menu');
 const menuIcon = document.querySelector('.menu-icon');
 const closeIcon = document.querySelector('.close-icon');
 const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
+const appRoutes = ['home', 'cv', 'game'];
+
+function getCurrentRoute() {
+    const route = window.location.hash.replace('#', '').trim().toLowerCase();
+    if (appRoutes.includes(route)) {
+        return route;
+    }
+    return 'home';
+}
+
+function setRoute(route, options = {}) {
+    const { preserveScroll = false } = options;
+    const safeRoute = appRoutes.includes(route) ? route : 'home';
+    const views = document.querySelectorAll('.page-view[data-route]');
+
+    views.forEach((view) => {
+        const isActive = view.dataset.route === safeRoute;
+        view.classList.toggle('active', isActive);
+    });
+
+    const header = document.querySelector('.site-header');
+    document.body.classList.toggle('cv-page', safeRoute === 'cv');
+    if (header) {
+        header.classList.toggle('cv-header', safeRoute === 'cv');
+    }
+
+    document.querySelectorAll('.nav-link[href^="#"], .nav-link-mobile[href^="#"]').forEach((link) => {
+        const href = link.getAttribute('href').replace('#', '');
+        link.classList.toggle('active', href === safeRoute);
+    });
+
+    if (!preserveScroll) {
+        window.scrollTo(0, 0);
+    }
+
+    if (safeRoute === 'game') {
+        window.dispatchEvent(new Event('resize'));
+    }
+}
+
+function initSpaRouter() {
+    const route = getCurrentRoute();
+    if (!window.location.hash) {
+        window.location.hash = '#home';
+    }
+    setRoute(route);
+
+    window.addEventListener('hashchange', () => {
+        setRoute(getCurrentRoute());
+    });
+}
 
 function toggleMobileMenu() {
+    if (!mobileMenu || !menuIcon || !closeIcon || !mobileMenuBtn) {
+        return;
+    }
+
     const isOpen = !mobileMenu.classList.contains('hidden');
     
     if (isOpen) {
@@ -24,6 +79,10 @@ function toggleMobileMenu() {
 
 
 function closeMobileMenu() {
+    if (!mobileMenu || !menuIcon || !closeIcon || !mobileMenuBtn) {
+        return;
+    }
+
     mobileMenu.classList.add('hidden');
     menuIcon.classList.remove('hidden');
     closeIcon.classList.add('hidden');
@@ -39,6 +98,10 @@ mobileNavLinks.forEach(link => {
 });
 
 document.addEventListener('click', (e) => {
+    if (!mobileMenuBtn || !mobileMenu) {
+        return;
+    }
+
     if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
         closeMobileMenu();
     }
@@ -48,6 +111,16 @@ document.addEventListener('click', (e) => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
+
+        if (href && appRoutes.includes(href.replace('#', ''))) {
+            e.preventDefault();
+            if (window.location.hash !== href) {
+                window.location.hash = href;
+            } else {
+                setRoute(href.replace('#', ''));
+            }
+            return;
+        }
         
         
         if (href === '#') {
@@ -68,26 +141,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 function updateActiveNavLink() {
-    const sections = document.querySelectorAll('main > section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let currentSection = '';
-    
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 150) {
-            currentSection = section.id;
-        }
-    });
-    
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href').substring(1);
-        if (href === currentSection) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
+    setRoute(getCurrentRoute(), { preserveScroll: true });
 }
 
 
@@ -142,7 +196,10 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
 
 
 document.addEventListener('keydown', (e) => {
- 
+    if (!mobileMenu) {
+        return;
+    }
+
     if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
         closeMobileMenu();
     }
@@ -200,6 +257,7 @@ document.addEventListener('click', (e) => {
 function init() {
     
     console.log('Portfolio initialized');
+    initSpaRouter();
     const images = document.querySelectorAll('img');
     let loadedImages = 0;
     

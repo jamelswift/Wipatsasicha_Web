@@ -7,55 +7,14 @@
     <meta name="theme-color" content="#1E3426">
     <title>Wipatsasicha - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cv-styles.css">
 </head>
 <body>
-    <header class="site-header" role="banner">
-        <div class="header-container">
-        
-            <a href="#" class="logo" aria-label="Go to homepage">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="animate-sparkle" aria-hidden="true">
-                    <path d="M12 0L14.59 8.41L23 12L14.59 15.59L12 24L9.41 15.59L1 12L9.41 8.41L12 0Z" />
-                </svg>
-                <span class="logo-text">Wipatsasicha</span>
-            </a>
-
-            
-            <nav class="nav-desktop" aria-label="Main navigation">
-                <ul class="nav-list">
-                    <li><a href="#about" class="nav-link">About me</a></li>
-                    <li><a href="cv.html" class="nav-link">Resume</a></li>
-                    <li><a href="game.html" class="nav-link">Game</a></li>
-                </ul>
-                <a href="mailto:66030281@kmitl.ac.th" class="cta-button">Get in touch!</a>
-            </nav>
-
-           
-            <button class="mobile-menu-button" id="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
-                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-                <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-
-        
-        <nav class="nav-mobile hidden" id="mobile-menu" aria-label="Mobile navigation">
-            <ul class="nav-list-mobile">
-                <li><a href="#about" class="nav-link-mobile">About me</a></li>
-                <li><a href="cv.html" class="nav-link-mobile">Resume</a></li>
-                <li><a href="game.html" class="nav-link-mobile">Game</a></li>
-                <li><a href="mailto:66030281@kmitl.ac.th" class="cta-button-mobile">Get in touch!</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="shared-header"></div>
 
     
     <main>
+        <div id="page-home" class="page-view active" data-route="home">
        
         <section class="hero-section" aria-labelledby="hero-heading">
             <div class="hero-background" aria-hidden="true">
@@ -377,30 +336,304 @@
                 </div>
             </div>
         </section>
+
+        </div>
+
+        <div id="page-cv" class="page-view" data-route="cv">
+            <section class="cv-header-section">
+                <div class="cv-container">
+                    <div class="cv-hero-grid">
+                        <div class="cv-hero-copy">
+                            <div class="cv-title-block">
+                                <h1 class="cv-page-title">Curriculum Vitae</h1>
+                                <h2 class="cv-name">Wipatsasicha Bumpenboon</h2>
+                                <p class="cv-position">Computer in Engineering Education</p>
+                            </div>
+
+                            <div class="cv-header-info">
+                                <div class="cv-contact-info">
+                                    <div class="cv-info-item">
+                                        <span class="cv-info-icon">📍</span>
+                                        <div>
+                                            <p class="cv-info-label">Location</p>
+                                            <p class="cv-info-value">Bangkok, Thailand</p>
+                                        </div>
+                                    </div>
+                                    <div class="cv-info-item">
+                                        <span class="cv-info-icon">✉</span>
+                                        <div>
+                                            <p class="cv-info-label">Email</p>
+                                            <p class="cv-info-value"><a href="mailto:66030281@kmitl.ac.th">66030281@kmitl.ac.th</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="cv-info-item">
+                                        <span class="cv-info-icon">📱</span>
+                                        <div>
+                                            <p class="cv-info-label">Phone</p>
+                                            <p class="cv-info-value">+66 65 680 5890</p>
+                                        </div>
+                                    </div>
+                                    <div class="cv-info-item">
+                                        <span class="cv-info-icon">🔗</span>
+                                        <div>
+                                            <p class="cv-info-label">Portfolio</p>
+                                            <p class="cv-info-value"><a href="#home">wipatsasicha-portfolio.vercel.app</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="cv-info-item">
+                                        <span class="cv-info-icon">🎂</span>
+                                        <div>
+                                            <p class="cv-info-label">Born</p>
+                                            <p class="cv-info-value">February 7, 2005</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cv-portrait-card">
+                            <div class="cv-portrait-frame">
+                                <img src="public/images/profile.jpg" alt="Portrait of Wipatsasicha Bumpenboon" class="cv-portrait-image">
+                            </div>
+                            <p class="cv-portrait-caption">Creative developer focused on educational technology and accessible web experiences.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="cv-container">
+                <div class="cv-layout">
+                    <aside class="cv-sidebar">
+                        <section class="cv-sidebar-section">
+                            <h3 class="cv-sidebar-title">Languages</h3>
+                            <div class="cv-language-item">
+                                <p class="cv-language-name">Thai</p>
+                                <p class="cv-language-level">Native</p>
+                            </div>
+                            <div class="cv-language-item">
+                                <p class="cv-language-name">English</p>
+                                <p class="cv-language-level">Intermediate (B2)</p>
+                            </div>
+                        </section>
+
+                        <section class="cv-sidebar-section">
+                            <h3 class="cv-sidebar-title">Technical Skills</h3>
+                            <div class="cv-skill-cloud">
+                                <span class="cv-skill-item">React</span>
+                                <span class="cv-skill-item">Next.js</span>
+                                <span class="cv-skill-item">JavaScript</span>
+                                <span class="cv-skill-item">TypeScript</span>
+                                <span class="cv-skill-item">HTML5</span>
+                                <span class="cv-skill-item">CSS3</span>
+                                <span class="cv-skill-item">Tailwind CSS</span>
+                                <span class="cv-skill-item">Node.js</span>
+                                <span class="cv-skill-item">Git</span>
+                                <span class="cv-skill-item">Figma</span>
+                            </div>
+                        </section>
+                    </aside>
+
+                    <article class="cv-content">
+                        <section class="cv-section">
+                            <h3 class="cv-section-title">Profile Summary</h3>
+                            <p class="cv-section-text">
+                                A dedicated Computer in Engineering Education student with a strong passion for web development and educational technology. Experienced in building responsive, accessible web applications using modern technologies including HTML5, CSS3, JavaScript, React, and Next.js. Committed to creating user-centered digital solutions and sharing knowledge through teaching and mentoring.
+                            </p>
+                        </section>
+
+                        <section class="cv-section">
+                            <h3 class="cv-section-title">Education</h3>
+                            <div class="cv-timeline-item">
+                                <div class="cv-timeline-header">
+                                    <h4 class="cv-item-title">B.S. Computer in Engineering Education</h4>
+                                    <span class="cv-item-date">2023 - Present</span>
+                                </div>
+                                <p class="cv-item-institution">King Mongkut's Institute of Technology Ladkrabang (KMITL)</p>
+                                <p class="cv-item-description">
+                                    Pursuing degree in Computer in Engineering Education with focus on web technologies, software engineering, and educational technology. Current GPA: 3.45
+                                </p>
+                                <div class="cv-item-tags">
+                                    <span class="cv-tag-small">Web Technologies</span>
+                                    <span class="cv-tag-small">Software Engineering</span>
+                                    <span class="cv-tag-small">EdTech</span>
+                                </div>
+                            </div>
+
+                            <div class="cv-timeline-item">
+                                <div class="cv-timeline-header">
+                                    <h4 class="cv-item-title">High School Diploma</h4>
+                                    <span class="cv-item-date">2019 - 2023</span>
+                                </div>
+                                <p class="cv-item-institution">Military Technical Training School (MTTS)</p>
+                                <p class="cv-item-description">
+                                    Science-Mathematics program with focus on computer science and electronics engineering.
+                                </p>
+                                <div class="cv-item-tags">
+                                    <span class="cv-tag-small">Mathematics</span>
+                                    <span class="cv-tag-small">Computer Science</span>
+                                    <span class="cv-tag-small">Electronics</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="cv-section">
+                            <h3 class="cv-section-title">Professional Experience</h3>
+                            <div class="cv-timeline-item">
+                                <div class="cv-timeline-header">
+                                    <h4 class="cv-item-title">Web Development Intern</h4>
+                                    <span class="cv-item-date">2024 - Present</span>
+                                </div>
+                                <p class="cv-item-institution">TechStartup Co., Ltd.</p>
+                                <ul class="cv-item-list">
+                                    <li>Building responsive web applications with React and Next.js</li>
+                                    <li>Collaborating with design team on UI/UX and web accessibility</li>
+                                    <li>Implementing modern frontend features and optimizing performance</li>
+                                    <li>Writing clean, maintainable code with TypeScript</li>
+                                </ul>
+                                <div class="cv-item-tags">
+                                    <span class="cv-tag-small">React</span>
+                                    <span class="cv-tag-small">Next.js</span>
+                                    <span class="cv-tag-small">TypeScript</span>
+                                    <span class="cv-tag-small">Tailwind CSS</span>
+                                </div>
+                            </div>
+
+                            <div class="cv-timeline-item">
+                                <div class="cv-timeline-header">
+                                    <h4 class="cv-item-title">Teaching Assistant - Web Technologies</h4>
+                                    <span class="cv-item-date">2023 - 2024</span>
+                                </div>
+                                <p class="cv-item-institution">KMITL Faculty of Technical Education</p>
+                                <ul class="cv-item-list">
+                                    <li>Assisted in teaching HTML, CSS, and JavaScript to 80+ students</li>
+                                    <li>Created comprehensive tutorial materials and practical exercises</li>
+                                    <li>Provided one-on-one support and code reviews</li>
+                                    <li>Developed hands-on projects for student learning</li>
+                                </ul>
+                                <div class="cv-item-tags">
+                                    <span class="cv-tag-small">HTML</span>
+                                    <span class="cv-tag-small">CSS</span>
+                                    <span class="cv-tag-small">JavaScript</span>
+                                    <span class="cv-tag-small">Teaching</span>
+                                </div>
+                            </div>
+
+                            <div class="cv-timeline-item">
+                                <div class="cv-timeline-header">
+                                    <h4 class="cv-item-title">Freelance Web Developer</h4>
+                                    <span class="cv-item-date">2022 - 2023</span>
+                                </div>
+                                <p class="cv-item-institution">Self-employed</p>
+                                <ul class="cv-item-list">
+                                    <li>Built custom websites for local businesses and startups</li>
+                                    <li>Focused on mobile-first design and fast loading optimization</li>
+                                    <li>Implemented SEO best practices and responsive layouts</li>
+                                    <li>Managed client communication and project scope</li>
+                                </ul>
+                                <div class="cv-item-tags">
+                                    <span class="cv-tag-small">HTML/CSS</span>
+                                    <span class="cv-tag-small">WordPress</span>
+                                    <span class="cv-tag-small">SEO</span>
+                                    <span class="cv-tag-small">Responsive Design</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="cv-section">
+                            <h3 class="cv-section-title">Certifications</h3>
+                            <div class="cv-cert-grid">
+                                <div class="cv-cert-item">
+                                    <h4 class="cv-cert-title">Responsive Web Design</h4>
+                                    <p class="cv-cert-issuer">freeCodeCamp</p>
+                                    <p class="cv-cert-date">2024</p>
+                                </div>
+
+                                <div class="cv-cert-item">
+                                    <h4 class="cv-cert-title">JavaScript Algorithms & Data Structures</h4>
+                                    <p class="cv-cert-issuer">freeCodeCamp</p>
+                                    <p class="cv-cert-date">2024</p>
+                                </div>
+
+                                <div class="cv-cert-item">
+                                    <h4 class="cv-cert-title">Git & GitHub Fundamentals</h4>
+                                    <p class="cv-cert-issuer">GitHub Learning Lab</p>
+                                    <p class="cv-cert-date">2023</p>
+                                </div>
+
+                                <div class="cv-cert-item">
+                                    <h4 class="cv-cert-title">Web Accessibility Essentials</h4>
+                                    <p class="cv-cert-issuer">Google</p>
+                                    <p class="cv-cert-date">2023</p>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </div>
+
+            <section class="cv-print-section">
+                <div class="cv-container">
+                    <button class="cv-print-button" onclick="window.print()">
+                        <span class="cv-print-icon">🖨</span>
+                        Print / Save as PDF
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-game" class="page-view" data-route="game">
+            <section id="game" class="work-section" aria-labelledby="game-heading">
+                <div class="container">
+                    <h2 id="game-heading" class="section-heading">Game</h2>
+                    <p class="section-text work-intro">
+                        Bone Trail mini game built with HTML5 Canvas. Move your mouse (or finger on mobile) to guide the bone trail, collect stars, and avoid red hazards before time runs out.
+                    </p>
+
+                    <div class="game-guide-grid">
+                        <article class="game-guide-card" aria-labelledby="how-to-play-heading">
+                            <h3 id="how-to-play-heading" class="game-guide-title">How to play</h3>
+                            <ul class="game-guide-list">
+                                <li>Move mouse on desktop or drag on mobile to steer the bone trail.</li>
+                                <li>Collect pickups to gain score and more time.</li>
+                                <li>Press Space to activate boost when Boost is Ready.</li>
+                                <li>Hit Restart to begin a new run any time.</li>
+                            </ul>
+                        </article>
+
+                        <article class="game-guide-card" aria-labelledby="rules-heading">
+                            <h3 id="rules-heading" class="game-guide-title">Rules</h3>
+                            <ul class="game-guide-list">
+                                <li>Yellow Star: score up with combo bonus.</li>
+                                <li>Blue Gem: extra score and extra time.</li>
+                                <li>Green Clock: large time bonus.</li>
+                                <li>Red hazards reduce time and reset combo.</li>
+                                <li>Game ends when time reaches 0.</li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="work-panel">
+                        <div class="work-game-hud" aria-live="polite">
+                            <p class="work-game-stat">Score: <span id="bone-score">0</span></p>
+                            <p class="work-game-stat">Level: <span id="bone-level">1</span></p>
+                            <p class="work-game-stat">Combo: x<span id="bone-combo">1</span></p>
+                            <p class="work-game-stat">Time: <span id="bone-time">45</span>s</p>
+                            <p class="work-game-stat" id="bone-boost-label">Boost: Ready</p>
+                            <button id="bone-restart" class="work-game-button" type="button">Restart</button>
+                        </div>
+                        <p class="work-game-hint">Controls: Move pointer to steer, collect gold stars, avoid red hazards, and press Space for speed boost.</p>
+                        <canvas id="bone-trail-canvas" class="bone-game-canvas" aria-label="Bone Trail game area"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
  
-    <footer class="site-footer" role="contentinfo">
-        <div class="footer-container">
-           
-            <div class="footer-brand">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 0L14.59 8.41L23 12L14.59 15.59L12 24L9.41 15.59L1 12L9.41 8.41L12 0Z" />
-                </svg>
-                <p>© 2026 Wipatsasicha. All rights reserved.</p>
-            </div>
-
-            
-            <nav aria-label="Social links">
-                <ul class="social-list">
-                    <li><a href="https://github.com/jamelswift" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">GH</a></li>
-                    <li><a href="mailto:Wipatsasicha0702@gmail.com" class="social-icon" aria-label="Email">✉</a></li>
-                </ul>
-            </nav>
-        </div>
-    </footer>
+    <div id="shared-footer"></div>
 
     
+    <script src="layout.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
