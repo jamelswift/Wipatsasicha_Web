@@ -79,9 +79,9 @@
 .cv-portrait-image {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: center top;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
     border-radius: 1rem;
 }
 

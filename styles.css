@@ -38,10 +38,14 @@ body {
 }
 
 .page-view {
+    display: block;
+}
+
+.js .page-view {
     display: none;
 }
 
-.page-view.active {
+.js .page-view.active {
     display: block;
 }
 
@@ -994,9 +998,10 @@ a:hover {
 }
 
 .activity-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1rem 140px 1fr;
     gap: var(--spacing-3);
-    align-items: flex-start;
+    align-items: start;
 }
 
 .activity-marker {
@@ -1013,7 +1018,8 @@ a:hover {
     font-size: 0.875rem;
     font-weight: bold;
     color: var(--text-dark);
-    min-width: 50px;
+    width: 140px;
+    white-space: nowrap;
 }
 
 .activity-content {

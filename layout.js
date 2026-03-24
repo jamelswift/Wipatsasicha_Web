@@ -13,7 +13,7 @@
 
             <nav class="nav-desktop" aria-label="Main navigation">
                 <ul class="nav-list">
-                    <li><a href="#home" class="nav-link">About me</a></li>
+                    <li><a href="#home" class="nav-link">Home page</a></li>
                     <li><a href="#cv" class="nav-link">Resume</a></li>
                     <li><a href="#game" class="nav-link">Game</a></li>
                 </ul>
@@ -35,7 +35,7 @@
 
         <nav class="nav-mobile hidden" id="mobile-menu" aria-label="Mobile navigation">
             <ul class="nav-list-mobile">
-                <li><a href="#home" class="nav-link-mobile">About me</a></li>
+                <li><a href="#home" class="nav-link-mobile">Home page</a></li>
                 <li><a href="#cv" class="nav-link-mobile">Resume</a></li>
                 <li><a href="#game" class="nav-link-mobile">Game</a></li>
                 <li><a href="mailto:66030281@kmitl.ac.th" class="cta-button-mobile">Get in touch!</a></li>
