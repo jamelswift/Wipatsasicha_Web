@@ -475,7 +475,6 @@ a:hover {
 }
 
 .about-photo-wrapper {
-    position: relative;
     max-width: 400px;
 }
 
@@ -487,25 +486,41 @@ a:hover {
 }
 
 
-.floating-tag {
-    position: absolute;
+.profile-meta-card {
+    margin-top: var(--spacing-3);
     background: var(--card-bg);
+    border-radius: 0.75rem;
     padding: var(--spacing-2) var(--spacing-3);
-    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 576px) {
+    .profile-meta-card {
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+    }
+}
+
+.profile-meta-item {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    gap: 0.2rem;
 }
 
-.tag-1 {
-    top: 2rem;
-    right: -1rem;
+.profile-meta-divider {
+    display: none;
+    width: 1px;
+    height: 2.5rem;
+    background: rgba(30, 52, 38, 0.15);
 }
 
-.tag-2 {
-    bottom: 5rem;
-    left: -1rem;
+@media (min-width: 576px) {
+    .profile-meta-divider {
+        display: block;
+    }
 }
 
 .tag-label {
