@@ -669,7 +669,8 @@ a:hover {
     font-family: Georgia, serif;
     font-size: 1.125rem;
     font-weight: bold;
-    min-width: 60px;
+    width: 140px;
+    white-space: nowrap;
 }
 
 .experience-content {
