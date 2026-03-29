@@ -5,57 +5,6 @@ const mobileMenu = document.getElementById('mobile-menu');
 const menuIcon = document.querySelector('.menu-icon');
 const closeIcon = document.querySelector('.close-icon');
 const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
-const appRoutes = ['home', 'cv', 'game'];
-
-function getCurrentRoute() {
-    const route = window.location.hash.replace('#', '').trim().toLowerCase();
-    if (appRoutes.includes(route)) {
-        return route;
-    }
-    return 'home';
-}
-
-function setRoute(route, options = {}) {
-    const { preserveScroll = false } = options;
-    const safeRoute = appRoutes.includes(route) ? route : 'home';
-    const views = document.querySelectorAll('.page-view[data-route]');
-
-    views.forEach((view) => {
-        const isActive = view.dataset.route === safeRoute;
-        view.classList.toggle('active', isActive);
-    });
-
-    const header = document.querySelector('.site-header');
-    document.body.classList.toggle('cv-page', safeRoute === 'cv');
-    if (header) {
-        header.classList.toggle('cv-header', safeRoute === 'cv');
-    }
-
-    document.querySelectorAll('.nav-link[href^="#"], .nav-link-mobile[href^="#"]').forEach((link) => {
-        const href = link.getAttribute('href').replace('#', '');
-        link.classList.toggle('active', href === safeRoute);
-    });
-
-    if (!preserveScroll) {
-        window.scrollTo(0, 0);
-    }
-
-    if (safeRoute === 'game') {
-        window.dispatchEvent(new Event('resize'));
-    }
-}
-
-function initSpaRouter() {
-    const route = getCurrentRoute();
-    if (!window.location.hash) {
-        window.location.hash = '#home';
-    }
-    setRoute(route);
-
-    window.addEventListener('hashchange', () => {
-        setRoute(getCurrentRoute());
-    });
-}
 
 function toggleMobileMenu() {
     if (!mobileMenu || !menuIcon || !closeIcon || !mobileMenuBtn) {
@@ -112,17 +61,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
 
-        if (href && appRoutes.includes(href.replace('#', ''))) {
-            e.preventDefault();
-            if (window.location.hash !== href) {
-                window.location.hash = href;
-            } else {
-                setRoute(href.replace('#', ''));
-            }
-            return;
-        }
-        
-        
         if (href === '#') {
             e.preventDefault();
             return;
@@ -138,15 +76,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-
-function updateActiveNavLink() {
-    setRoute(getCurrentRoute(), { preserveScroll: true });
-}
-
-
-window.addEventListener('scroll', updateActiveNavLink);
-updateActiveNavLink(); // Call on page load
 
 
 const observerOptions = {
@@ -240,10 +169,6 @@ function throttle(func, limit) {
     };
 }
 
-
-const debouncedScroll = debounce(updateActiveNavLink, 100);
-window.addEventListener('scroll', debouncedScroll);
-
 document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="http"]');
     if (link) {
@@ -257,7 +182,6 @@ document.addEventListener('click', (e) => {
 function init() {
     
     console.log('Portfolio initialized');
-    initSpaRouter();
     const images = document.querySelectorAll('img');
     let loadedImages = 0;
     

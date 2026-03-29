@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wipatsasicha JavaScript Game">
+    <meta name="theme-color" content="#1E3426">
+    <script>
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
+    <title>Wipatsasicha - Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cv-styles.css">
+</head>
+<body>
+    <noscript>
+        <header class="site-header" role="banner">
+            <div class="header-container">
+                <a href="index.html" class="logo" aria-label="Go to homepage">
+                    <span class="logo-text">Wipatsasicha</span>
+                </a>
+                <nav class="nav-desktop" aria-label="Main navigation" style="display:flex;">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home page</a></li>
+                        <li><a href="cv.html" class="nav-link">CV</a></li>
+                        <li><a href="game.html" class="nav-link">Game</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </noscript>
+
+    <div id="shared-header"></div>
+
+    <main>
+        <section id="game" class="work-section" aria-labelledby="game-heading">
+            <div class="container">
+                <h2 id="game-heading" class="section-heading">Game</h2>
+                <p class="section-text work-intro">
+                    Bone Trail mini game built with HTML5 Canvas. Move your mouse (or finger on mobile) to guide the bone trail, collect stars, and avoid red hazards before time runs out.
+                </p>
+
+                <div class="game-guide-grid">
+                    <article class="game-guide-card" aria-labelledby="how-to-play-heading">
+                        <h3 id="how-to-play-heading" class="game-guide-title">How to play</h3>
+                        <ul class="game-guide-list">
+                            <li>Move mouse on desktop or drag on mobile to steer the bone trail.</li>
+                            <li>Collect pickups to gain score and more time.</li>
+                            <li>Press Space to activate boost when Boost is Ready.</li>
+                            <li>Hit Restart to begin a new run any time.</li>
+                        </ul>
+                    </article>
+
+                    <article class="game-guide-card" aria-labelledby="rules-heading">
+                        <h3 id="rules-heading" class="game-guide-title">Rules</h3>
+                        <ul class="game-guide-list">
+                            <li>Yellow Star: score up with combo bonus.</li>
+                            <li>Blue Gem: extra score and extra time.</li>
+                            <li>Green Clock: large time bonus.</li>
+                            <li>Red hazards reduce time and reset combo.</li>
+                            <li>Game ends when time reaches 0.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="work-panel">
+                    <div class="work-game-hud" aria-live="polite">
+                        <p class="work-game-stat">Score: <span id="bone-score">0</span></p>
+                        <p class="work-game-stat">Level: <span id="bone-level">1</span></p>
+                        <p class="work-game-stat">Combo: x<span id="bone-combo">1</span></p>
+                        <p class="work-game-stat">Time: <span id="bone-time">45</span>s</p>
+                        <p class="work-game-stat" id="bone-boost-label">Boost: Ready</p>
+                        <button id="bone-restart" class="work-game-button" type="button">Restart</button>
+                    </div>
+                    <p class="work-game-hint">Controls: Move pointer to steer, collect gold stars, avoid red hazards, and press Space for speed boost.</p>
+                    <canvas id="bone-trail-canvas" class="bone-game-canvas" aria-label="Bone Trail game area"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="shared-footer"></div>
+
+    <script src="layout.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>

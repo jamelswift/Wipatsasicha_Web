@@ -37,6 +37,10 @@ body {
     overflow-x: hidden;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .page-view {
     display: block;
 }
@@ -177,6 +181,10 @@ a:hover {
     width: 100%;
 }
 
+.nav-link.active::after {
+    width: 100%;
+}
+
 .cta-button {
     padding: 0.5rem 1.25rem;
     border: 2px solid var(--text-dark);
@@ -252,6 +260,10 @@ a:hover {
     font-size: 0.95rem;
 }
 
+.nav-link-mobile.active {
+    color: var(--primary);
+}
+
 .cta-button-mobile {
     display: inline-block;
     padding: var(--spacing-2) var(--spacing-3);
@@ -265,6 +277,155 @@ a:hover {
 .cta-button-mobile:hover {
     background: var(--text-dark);
     color: var(--bg-cream);
+}
+
+
+.contact-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    transition: var(--transition);
+}
+
+.contact-modal-overlay.hidden {
+    display: none;
+}
+
+.contact-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    max-width: 450px;
+    width: 90vw;
+    z-index: 1000;
+    transition: var(--transition);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.contact-modal.hidden {
+    display: none;
+}
+
+.contact-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-4);
+    border-bottom: 1px solid var(--card-bg);
+}
+
+.contact-modal-title {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.contact-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-1);
+    transition: var(--transition);
+}
+
+.contact-modal-close:hover {
+    color: var(--primary);
+}
+
+.contact-modal-content {
+    padding: var(--spacing-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+}
+
+.contact-item {
+    display: flex;
+    gap: var(--spacing-3);
+    align-items: flex-start;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    min-width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 var(--spacing-1) 0;
+}
+
+.contact-value {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin: 0;
+    font-weight: 500;
+}
+
+.contact-link {
+    font-size: 0.95rem;
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary);
+    transition: var(--transition);
+}
+
+.contact-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.contact-divider {
+    height: 1px;
+    background: var(--card-bg);
+    margin: var(--spacing-2) 0;
+}
+
+.contact-social {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.contact-social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+}
+
+.contact-social-link {
+    padding: var(--spacing-1) var(--spacing-2);
+    background: var(--card-bg);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-social-link:hover {
+    background: var(--primary);
+    color: white;
 }
 
 
@@ -694,6 +855,7 @@ a:hover {
 
 .experience-content {
     flex: 1;
+    min-width: 0;
 }
 
 .experience-title {
@@ -1020,6 +1182,39 @@ a:hover {
     color: var(--text-dark);
     width: 140px;
     white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .experience-item {
+        display: grid;
+        grid-template-columns: 1rem 1fr;
+        gap: var(--spacing-2);
+    }
+
+    .experience-year {
+        grid-column: 2;
+        width: auto;
+        font-size: 1rem;
+        margin-top: -0.125rem;
+    }
+
+    .experience-content {
+        grid-column: 2;
+    }
+
+    .activity-item {
+        grid-template-columns: 1rem 1fr;
+        gap: var(--spacing-2);
+    }
+
+    .activity-year {
+        width: auto;
+        grid-column: 2;
+    }
+
+    .activity-content {
+        grid-column: 2;
+    }
 }
 
 .activity-content {

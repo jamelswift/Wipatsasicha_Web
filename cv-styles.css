@@ -4,6 +4,10 @@
     background: #FAFAF8;
 }
 
+.cv-page .site-header {
+    border-bottom: 2px solid var(--text-dark);
+}
+
 .cv-header {
     border-bottom: 2px solid var(--text-dark);
 }
