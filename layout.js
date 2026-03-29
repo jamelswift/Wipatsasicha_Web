@@ -20,6 +20,7 @@
                 <ul class="nav-list">
                     <li><a href="index.html" class="${getNavClass('index.html', 'nav-link')}">Home page</a></li>
                     <li><a href="cv.html" class="${getNavClass('cv.html', 'nav-link')}">CV</a></li>
+                    <li><a href="music.html" class="${getNavClass('music.html', 'nav-link')}">Music</a></li>
                     <li><a href="game.html" class="${getNavClass('game.html', 'nav-link')}">Game</a></li>
                 </ul>
                 <button class="cta-button" id="desktop-contact-btn" type="button">Get in touch!</button>
@@ -42,6 +43,7 @@
             <ul class="nav-list-mobile">
                 <li><a href="index.html" class="${getNavClass('index.html', 'nav-link-mobile')}">Home page</a></li>
                 <li><a href="cv.html" class="${getNavClass('cv.html', 'nav-link-mobile')}">CV</a></li>
+                <li><a href="music.html" class="${getNavClass('music.html', 'nav-link-mobile')}">Music</a></li>
                 <li><a href="game.html" class="${getNavClass('game.html', 'nav-link-mobile')}">Game</a></li>
                 <li><button class="cta-button-mobile" id="mobile-contact-btn" type="button">Get in touch!</button></li>
             </ul>

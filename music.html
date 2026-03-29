@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wipatsasicha music player with searchable songs and vinyl style UI">
+    <meta name="theme-color" content="#1E3426">
+    <script>
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
+    <title>Wipatsasicha - Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cv-styles.css">
+</head>
+<body>
+    <noscript>
+        <header class="site-header" role="banner">
+            <div class="header-container">
+                <a href="index.html" class="logo" aria-label="Go to homepage">
+                    <span class="logo-text">Wipatsasicha</span>
+                </a>
+                <nav class="nav-desktop" aria-label="Main navigation" style="display:flex;">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home page</a></li>
+                        <li><a href="cv.html" class="nav-link">CV</a></li>
+                        <li><a href="music.html" class="nav-link">Music</a></li>
+                        <li><a href="game.html" class="nav-link">Game</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </noscript>
+
+    <div id="shared-header"></div>
+
+    <main class="music-page">
+        <section class="music-hero" aria-labelledby="music-heading">
+            <div class="container music-hero-grid">
+                <div class="music-copy">
+                    <p class="music-kicker">Now Spinning</p>
+                    <h1 id="music-heading" class="music-title">Music Room</h1>
+                    <p class="music-subtitle">Search for songs and play instantly with a vinyl-style experience.</p>
+                    <form id="music-search-form" class="music-search" role="search" aria-label="Search songs">
+                        <label for="music-search-input" class="visually-hidden">Search song</label>
+                        <input id="music-search-input" name="q" type="search" placeholder="Type a song title, artist, or genre" required>
+                        <button type="submit">Search</button>
+                    </form>
+                    <p id="music-status" class="music-status" aria-live="polite">Search for a song to start listening.</p>
+                </div>
+
+                <section class="vinyl-player" aria-labelledby="now-playing-title">
+                    <h2 id="now-playing-title" class="visually-hidden">Now Playing</h2>
+                    <div class="record-player" id="record-player">
+                        <div class="vinyl-record" id="vinyl-record" aria-hidden="true">
+                            <img id="record-artwork" src="public/images/profile.jpg" alt="Album cover" loading="lazy">
+                            <span class="record-ring"></span>
+                            <span class="record-center"></span>
+                        </div>
+                        <div class="record-arm" id="record-arm" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="now-playing-card">
+                        <p class="now-playing-label">Now Playing</p>
+                        <h3 id="track-title" class="track-title">-</h3>
+                        <p id="track-artist" class="track-artist">-</p>
+
+                        <div class="progress-wrap" aria-hidden="true">
+                            <div id="track-progress" class="track-progress"></div>
+                        </div>
+
+                        <div class="player-actions">
+                            <button id="play-pause-btn" type="button" class="player-btn">Play</button>
+                            <a id="open-track-link" href="#" target="_blank" rel="noopener noreferrer" class="open-track-link">Open Track</a>
+                        </div>
+
+                        <audio id="music-audio" preload="none"></audio>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="music-results-section" aria-labelledby="results-heading">
+            <div class="container">
+                <div class="results-header">
+                    <h2 id="results-heading" class="section-heading">Search Results</h2>
+                    <p class="results-hint">Select a song to play the 30-second preview.</p>
+                </div>
+                <ul id="music-results" class="music-results" aria-live="polite"></ul>
+            </div>
+        </section>
+    </main>
+
+    <div id="shared-footer"></div>
+
+    <script src="layout.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

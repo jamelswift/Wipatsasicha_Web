@@ -179,6 +179,208 @@ document.addEventListener('click', (e) => {
 });
 
 
+function initMusicPlayer() {
+    const searchForm = document.getElementById('music-search-form');
+    const searchInput = document.getElementById('music-search-input');
+    const statusText = document.getElementById('music-status');
+    const resultsList = document.getElementById('music-results');
+    const audio = document.getElementById('music-audio');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const openTrackLink = document.getElementById('open-track-link');
+    const titleEl = document.getElementById('track-title');
+    const artistEl = document.getElementById('track-artist');
+    const progressEl = document.getElementById('track-progress');
+    const recordEl = document.getElementById('vinyl-record');
+    const armEl = document.getElementById('record-arm');
+    const artworkEl = document.getElementById('record-artwork');
+
+    if (!searchForm || !searchInput || !statusText || !resultsList || !audio || !playPauseBtn || !openTrackLink || !titleEl || !artistEl || !progressEl || !recordEl || !armEl || !artworkEl) {
+        return;
+    }
+
+    let tracks = [];
+    let currentIndex = -1;
+
+    const setStatus = (message) => {
+        statusText.textContent = message;
+    };
+
+    const setVisualState = (isPlaying) => {
+        recordEl.classList.toggle('is-spinning', isPlaying);
+        armEl.classList.toggle('is-playing', isPlaying);
+        playPauseBtn.textContent = isPlaying ? 'Pause' : 'Play';
+    };
+
+    const markSelectedTrack = () => {
+        resultsList.querySelectorAll('.music-result-item').forEach((item, index) => {
+            item.classList.toggle('active', index === currentIndex);
+        });
+    };
+
+    const loadTrack = async (index, autoPlay) => {
+        const track = tracks[index];
+        if (!track || !track.previewUrl) {
+            setStatus('No preview is available for this track.');
+            return;
+        }
+
+        currentIndex = index;
+        audio.src = track.previewUrl;
+        titleEl.textContent = track.trackName || 'Unknown Track';
+        artistEl.textContent = track.artistName || 'Unknown Artist';
+        openTrackLink.href = track.trackViewUrl || '#';
+        artworkEl.src = track.artworkUrl100 || artworkEl.src;
+        markSelectedTrack();
+        progressEl.style.width = '0%';
+
+        if (autoPlay) {
+            try {
+                await audio.play();
+                setVisualState(true);
+                setStatus(`Now playing: ${titleEl.textContent} - ${artistEl.textContent}`);
+            } catch (err) {
+                setVisualState(false);
+                setStatus('Track is ready. Press Play to start listening.');
+            }
+        } else {
+            setVisualState(false);
+            setStatus('Track loaded. Press Play to start listening.');
+        }
+    };
+
+    const renderResults = (list) => {
+        resultsList.innerHTML = '';
+
+        if (!list.length) {
+            const li = document.createElement('li');
+            li.className = 'music-empty';
+            li.textContent = 'No tracks found. Try another keyword.';
+            resultsList.appendChild(li);
+            return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        list.forEach((track, index) => {
+            const li = document.createElement('li');
+            li.className = 'music-result-item';
+
+            const durationMs = Number(track.trackTimeMillis) || 0;
+            const mins = Math.floor(durationMs / 60000);
+            const secs = Math.floor((durationMs % 60000) / 1000);
+            const durationText = `${mins}:${String(secs).padStart(2, '0')}`;
+
+            li.innerHTML = `
+                <button type="button" class="music-result-btn" data-index="${index}">
+                    <img src="${track.artworkUrl60 || 'public/images/profile.jpg'}" alt="${track.trackName || 'Track'} cover" loading="lazy">
+                    <span class="music-result-copy">
+                        <strong>${track.trackName || 'Unknown Track'}</strong>
+                        <span>${track.artistName || 'Unknown Artist'} · ${durationText}</span>
+                    </span>
+                </button>
+            `;
+
+            fragment.appendChild(li);
+        });
+
+        resultsList.appendChild(fragment);
+
+        resultsList.querySelectorAll('.music-result-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const index = Number(btn.dataset.index);
+                loadTrack(index, true);
+            });
+        });
+    };
+
+    const searchSongs = async (query) => {
+        setStatus('Searching for tracks...');
+        resultsList.innerHTML = '';
+
+        const params = new URLSearchParams({
+            term: query,
+            media: 'music',
+            entity: 'song',
+            limit: '24'
+        });
+
+        try {
+            const response = await fetch(`https://itunes.apple.com/search?${params.toString()}`);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+            tracks = Array.isArray(data.results) ? data.results.filter((item) => item.previewUrl) : [];
+
+            renderResults(tracks);
+
+            if (tracks.length > 0) {
+                setStatus(`Found ${tracks.length} track(s).`);
+                loadTrack(0, false);
+            } else {
+                setStatus('No playable tracks found for this search.');
+            }
+        } catch (err) {
+            tracks = [];
+            renderResults([]);
+            setStatus('Search failed. Please try again in a moment.');
+        }
+    };
+
+    searchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const query = searchInput.value.trim();
+        if (!query) {
+            setStatus('Please enter a search term first.');
+            return;
+        }
+        searchSongs(query);
+    });
+
+    playPauseBtn.addEventListener('click', async () => {
+        if (currentIndex < 0 && tracks.length > 0) {
+            await loadTrack(0, true);
+            return;
+        }
+
+        if (!audio.src) {
+            setStatus('Search and select a track before playing.');
+            return;
+        }
+
+        if (audio.paused) {
+            try {
+                await audio.play();
+                setVisualState(true);
+            } catch (err) {
+                setStatus('Autoplay was blocked by the browser. Please press Play again.');
+            }
+            return;
+        }
+
+        audio.pause();
+        setVisualState(false);
+    });
+
+    audio.addEventListener('play', () => setVisualState(true));
+    audio.addEventListener('pause', () => setVisualState(false));
+    audio.addEventListener('ended', () => {
+        setVisualState(false);
+        setStatus('Preview finished. Select another track.');
+    });
+
+    audio.addEventListener('timeupdate', () => {
+        const current = audio.currentTime || 0;
+        const duration = audio.duration || 0;
+        const pct = duration > 0 ? (current / duration) * 100 : 0;
+        progressEl.style.width = `${pct}%`;
+    });
+
+    searchSongs('thai pop');
+}
+
+
 function init() {
     
     console.log('Portfolio initialized');
@@ -199,6 +401,7 @@ function init() {
     });
 
     initBoneTrailGame();
+    initMusicPlayer();
 }
 
 
