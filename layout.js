@@ -22,6 +22,7 @@
                     <li><a href="cv.html" class="${getNavClass('cv.html', 'nav-link')}">CV</a></li>
                     <li><a href="music.html" class="${getNavClass('music.html', 'nav-link')}">Music</a></li>
                     <li><a href="game.html" class="${getNavClass('game.html', 'nav-link')}">Game</a></li>
+                    <li><a href="sources.html" class="${getNavClass('sources.html', 'nav-link')}">Sources</a></li>
                 </ul>
                 <button class="cta-button" id="desktop-contact-btn" type="button">Get in touch!</button>
             </nav>
@@ -45,6 +46,7 @@
                 <li><a href="cv.html" class="${getNavClass('cv.html', 'nav-link-mobile')}">CV</a></li>
                 <li><a href="music.html" class="${getNavClass('music.html', 'nav-link-mobile')}">Music</a></li>
                 <li><a href="game.html" class="${getNavClass('game.html', 'nav-link-mobile')}">Game</a></li>
+                <li><a href="sources.html" class="${getNavClass('sources.html', 'nav-link-mobile')}">Sources</a></li>
                 <li><button class="cta-button-mobile" id="mobile-contact-btn" type="button">Get in touch!</button></li>
             </ul>
         </nav>
@@ -62,6 +64,7 @@
 
             <nav aria-label="Social links">
                 <ul class="social-list">
+                    <li><a href="sources.html" class="social-icon" aria-label="Media sources">SRC</a></li>
                     <li><a href="https://github.com/jamelswift" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">GH</a></li>
                     <li><a href="mailto:66030281@kmitl.ac.th" class="social-icon" aria-label="Email">✉</a></li>
                 </ul>

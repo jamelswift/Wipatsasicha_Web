@@ -1792,3 +1792,44 @@ input:focus-visible {
         flex-wrap: wrap;
     }
 }
+
+
+/* Sources page */
+
+.sources-page {
+    background: var(--bg-cream);
+}
+
+.sources-hero {
+    padding: var(--spacing-8) var(--spacing-4) var(--spacing-4);
+}
+
+.sources-section {
+    padding: var(--spacing-2) var(--spacing-4) var(--spacing-8);
+}
+
+.source-card {
+    background: white;
+    border: 1px solid rgba(30, 52, 38, 0.12);
+    border-left: 4px solid var(--primary);
+    border-radius: 0.8rem;
+    padding: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+}
+
+.source-title {
+    margin: 0 0 var(--spacing-2);
+    color: var(--text-dark);
+    font-size: 1.15rem;
+}
+
+.source-meta {
+    margin: 0 0 var(--spacing-1);
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.source-meta a {
+    color: var(--primary);
+    text-decoration: underline;
+}
